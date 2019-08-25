@@ -17,9 +17,9 @@ SongSchema.statics.addLyric = function(id, content) {
   const Lyric = mongoose.model('lyric');
 
   return this.findById(id)
-    .then(song => {
+    .then(song => { 
       const lyric = new Lyric({ content, song })
-      song.lyrics.push(lyric)
+      song.lyrics = lyric  
       return Promise.all([lyric.save(), song.save()])
         .then(([lyric, song]) => song);
     });
