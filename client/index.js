@@ -1,11 +1,13 @@
 import React from 'react';
+import './style/style.css';
 import ReactDOM from 'react-dom';
-import SongList from './components/songList';
-import App from './components/app'
+import SongList from './components/SongList';
+import App from './components/App'
 import SongCreate from './components/SongCreate'
-import ApolloClient, { ApolloError } from 'apollo-client';
+import ApolloClient from 'apollo-client';
 import {Router,Route,hashHistory,IndexRoute} from 'react-router';
 import {ApolloProvider} from 'react-apollo';
+import {SongDetails} from './components/SongDetail';
 const client = new ApolloClient({
 });
 const Root = () => {
@@ -15,9 +17,13 @@ const Root = () => {
     <Router history={hashHistory}>
       <Route path="/" component={App}>
       <IndexRoute component={SongList}/>
-      </Route>
-      <Route path="song/new" component={SongCreate}>
-      <IndexRoute component={SongCreate}/>
+   
+      {/* <Route path="song/new" component={App}> */}
+      <Route path="song/new" component={SongCreate}/>
+      {/* </Route> */}
+      {/* <Route path="song/:id" component={App}> */}
+      <Route  path="song/:id" component={SongDetails}/>
+      {/* </Route> */}
       </Route>
     </Router>
    </ApolloProvider>
