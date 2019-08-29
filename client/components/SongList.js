@@ -3,17 +3,23 @@ import gql from 'graphql-tag';
 import {graphql} from 'react-apollo'
 import {Link} from 'react-router';
 import query from '../queries/fetchSongs'
+import {hashHistory} from 'react-router';
 
 class SongList extends Component{
 renderSongs(){
 return this.props.data.songs.map((song,index)=>{
 return (
-  <li key={index} className="collection-item">
+  <li key={index}   className="collection-item">
+   <Link  onClick={()=>this.showSong(song.id)} >
     {song.title}
+    </Link>
     <i onClick={() =>this.onSongDelete(song.id)} className="material-icons collection-item">delete</i>
  </li>
 );
 })
+}
+showSong(id){
+hashHistory.push(`song/${id}`)
 }    
 onSongDelete(id){
     this.props.mutate({

@@ -1,7 +1,8 @@
 import React,{ Component } from 'react' ;
 import gql from 'graphql-tag'
 import {graphql} from 'react-apollo';
-import query from '../queries/fetchSongs'
+import query from '../queries/fetchSongs';
+import LyricList from '../components/LyricList';
 
 import {Link,hashHistory}  from 'react-router';
 class SongCreate extends Component{
@@ -25,6 +26,7 @@ class SongCreate extends Component{
         return(
             <div className="container">
                 <Link to="/">Back </Link>
+    
                <h3> Create a New Song</h3> 
                <form onSubmit = {(e)=>this.onSubmit(e)}>
                    <label>SongTitle:</label>
